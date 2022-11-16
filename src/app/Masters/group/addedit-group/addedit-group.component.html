@@ -1,0 +1,101 @@
+<div>
+    <div *ngIf="addMode">
+        <nav class="navbar" style="display: flex;">
+            <i class="las la-arrow-left left" routerLink="/group"> <a class="navbar-brand"
+                style="color:white;font-weight:bold;">Add Group</a>
+            </i>
+        </nav>
+    </div>
+
+    <div *ngIf="!addMode">
+        <nav class="navbar" style="display: flex;">
+            <i class="las la-arrow-left left" routerLink="/group"> <a class="navbar-brand"
+                style="color:white;font-weight:bold;">Edit Group</a>
+            </i>
+        </nav>
+    </div>
+
+    <div *ngIf="addMode; else editable">
+        <form [formGroup]="fg_groupname" class="was-validated">
+                <mat-form-field class="lengthinput">
+                    <mat-label>Group name</mat-label>
+                    <input matInput formControlName="group_name"(keypress)="keyPressAlphanumeric($event)" required/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN / SAC Code</mat-label>
+                    <mat-select id="hsnsacid" formControlName="hsnsac_code"
+                    (selectionChange)="selectHsnMasterid()">
+                        <mat-option *ngFor="let hsnmaster of hsnmasterlistdata" [value]="hsnmaster.HSN_Name">
+                          {{hsnmaster.HSN_Name}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>CGST</mat-label>
+                    <input matInput type="number" formControlName="CGST"readonly/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>CESS</mat-label>
+                    <input matInput  formControlName="Cess"/>
+                </mat-form-field><br/>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>SGST</mat-label>
+                    <input matInput  type="number" formControlName="CGST"readonly/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>IGST</mat-label>
+                    <input matInput formControlName="IGST" readonly/>
+                </mat-form-field><br/>
+
+               <button type="button" type="button"class="btn btn-danger" style="font-weight:bold;font-family: Robot;"(click)="savegroupmaster()"[disabled]="fg_groupname.invalid">Save</button><br/>
+           <b><p style="color: green; font-size:15pt;"></p></b>
+        </form>
+    </div>
+
+    <ng-template  #editable>
+        <div>
+            <form [formGroup]="fg_groupname" class="was-validated">
+                    <mat-form-field class="lengthinput">
+                        <mat-label>Group name</mat-label>
+                        <input matInput formControlName="group_name" required/>
+                    </mat-form-field>
+
+                    <mat-form-field class="lengthinput">
+                        <mat-label>HSN / SAC Code</mat-label>
+                        <mat-select id="hsnsacid" formControlName="hsnsac_code"
+                    (selectionChange)="selectHsnMasterid()">
+                        <mat-option *ngFor="let hsnmaster of hsnmasterlistdata" [value]="hsnmaster.HSN_Name">
+                          {{hsnmaster.HSN_Name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field class="lengthinput">
+                        <mat-label>CGST</mat-label>
+                        <input matInput formControlName="CGST" readonly/>
+                    </mat-form-field>
+    
+                    <mat-form-field class="lengthinput">
+                        <mat-label>CESS</mat-label>
+                        <input matInput formControlName="Cess"/>
+                    </mat-form-field><br/>
+    
+                    <mat-form-field class="lengthinput">
+                        <mat-label>SGST</mat-label>
+                        <input matInput formControlName="CGST"readonly/>
+                    </mat-form-field>
+    
+                    <mat-form-field class="lengthinput">
+                        <mat-label>IGST</mat-label>
+                        <input matInput formControlName="IGST"readonly/>
+                    </mat-form-field><br/>
+                    <button type="button"class="btn btn-danger" style="font-weight:bold;font-family: Robot;"(click)="updateGroupmasterlist()"  [disabled]="fg_groupname.invalid">Update</button><br/>
+            </form>
+        </div>
+    </ng-template>
+</div>

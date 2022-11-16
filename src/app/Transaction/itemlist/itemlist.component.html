@@ -1,0 +1,24 @@
+<!----Header Start-->
+<nav class="navbar" style="display: flex;">
+  <i class="las la-arrow-left left" routerLink="/layout" > <a class="navbar-brand" style="color: white;font-weight:bold;">Itemlist</a></i>
+    <form class="form-inline" style="float: right;" [formGroup]="searchitem">
+        <i class="las la-search search" (click) ="searchName()"></i> <input type="text" (keyup) ="list()"  formControlName="search_name"  placeholder="Search.." name="search" id="search">
+    </form>
+</nav>
+<!----Header End-->
+
+<!----Content start-->
+<div class="container-fluid">
+  <div class="card1" style="margin-left: 25px;">
+    <ul id="list" *ngFor="let item of itemlistdata;">
+      <li> <span> {{item.item_name}} <i class="las la-eye" id="edit2" routerLink="/viewitem/{{item.id}}"  ></i>
+        </span>
+        <span id="items">Item code: {{item.item_code}}</span></li>
+      <hr>
+    </ul>
+  </div>
+  <a class="float" routerLink="/additem">
+    <i class="la la-plus my-float"></i>
+  </a>
+</div>
+<!----Content End-->

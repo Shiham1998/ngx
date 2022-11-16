@@ -1,0 +1,527 @@
+<div *ngIf="addMode">
+  <nav class="navbar" style="display: flex;">
+    <i class="las la-arrow-left left" routerLink="/itemlist"> <a class="navbar-brand" style="color: white;font-weight:bold;">Add Item</a></i>
+      <form class="form-inline" style="float: right;" >        
+      </form>
+  </nav>
+</div>
+
+<div *ngIf="!addMode">
+  <nav class="navbar" style="display: flex;">
+    <i class="las la-arrow-left" routerLink="/itemlist" style="font-size: 20px;margin-right: 15px;"> <a class="navbar-brand" style="color: white;font-weight:bold;">Edit Item</a></i>
+      <form class="form-inline" style="float: right;" >      
+      </form>
+  </nav>
+</div>
+
+<div class="cll">
+  <div *ngIf="addMode; else editable">
+  
+    
+    <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+      {{isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+    </button> -->
+
+<mat-stepper orientation="vertical"  [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="addItemlist">
+        <form [formGroup]="addItemlist">
+          <ng-template  id="head" matStepLabel>Product Details:</ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Group</mat-label>
+            <mat-select id="combo">
+              <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+            </mat-select>
+          </mat-form-field>
+  
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Brand</mat-label>
+            <select matNativeControl formControlName="brand" name="car">
+              <option value="" selected></option>
+              <option *ngFor="let brand of branddata" >
+                {{brand.name}}
+              </option>
+             
+            </select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="legacy">
+           <mat-label>Item Code</mat-label>
+           <input matInput placeholder="" formControlName="item_code" >
+           <mat-error *ngIf="myError('item_code', 'required')">Item Code is required</mat-error>
+         </mat-form-field>
+         <mat-form-field appearance="legacy">
+           <mat-label>Item Name</mat-label>
+           <input matInput placeholder="" formControlName="item_name" id="itemname" >
+         </mat-form-field>
+         <mat-form-field appearance="legacy">
+          <mat-label>Print Name</mat-label>
+         <input matInput placeholder="" formControlName="print_name" >
+         <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+       </mat-form-field>
+       <mat-form-field appearance="legacy">
+        <mat-label>Bar Code</mat-label>
+       <input matInput placeholder="" formControlName="bar_code" >
+       <mat-error *ngIf="myError('hsn_code', 'required')">Bar Code is required</mat-error>
+     </mat-form-field>
+     <mat-form-field appearance="legacy">
+      <mat-label>Bar Code Status</mat-label>
+     <input matInput placeholder="" formControlName="barcode_status" >
+     <mat-error *ngIf="myError('hsn_code', 'required')">Shart Name is required</mat-error>
+    </mat-form-field>
+     <mat-form-field appearance="legacy">
+      <mat-label>Short Name</mat-label>
+     <input matInput placeholder="" formControlName="shortname" >
+     <mat-error *ngIf="myError('hsn_code', 'required')">Short Name is required</mat-error>
+   </mat-form-field>
+   <mat-form-field appearance="legacy">
+    <mat-label>Department</mat-label>
+   <input matInput placeholder="" formControlName="department" >
+   <mat-error *ngIf="myError('hsn_code', 'required')">Shart Name is required</mat-error>
+ </mat-form-field>
+ <mat-form-field appearance="legacy">
+  <mat-label>Sub Group</mat-label>
+ <input matInput placeholder="" formControlName="subgroup" >
+ <mat-error *ngIf="myError('hsn_code', 'required')">Shart Name is required</mat-error>
+</mat-form-field>
+<mat-form-field appearance="legacy">
+  <mat-label>Supplier</mat-label>
+ <input matInput placeholder="" formControlName="supplier" >
+ <mat-error *ngIf="myError('hsn_code', 'required')">Shart Name is required</mat-error>
+</mat-form-field>
+<mat-form-field appearance="legacy">
+  <mat-label>Product Image</mat-label>
+ <input matInput placeholder="" formControlName="productimage" >
+ <mat-error *ngIf="myError('hsn_code', 'required')">Shart Name is required</mat-error>
+</mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+
+      </mat-step>
+      <mat-step [stepControl]="addItemlist">
+        <form [formGroup]="addItemlist">
+          <ng-template matStepLabel>Price Details:</ng-template>
+          <!-- <fieldset class="border p-8" >
+            <legend  class="float-none w-auto" >Product Details:</legend> -->
+            <mat-form-field appearance="legacy">
+              <mat-label>Purchase Price</mat-label>
+             <input matInput placeholder="" formControlName="purchase_price" type="number">
+             <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+           </mat-form-field>
+           <mat-form-field appearance="legacy">
+             <mat-label>Sale Price</mat-label>
+            <input matInput placeholder="" formControlName="sale_price" type="number">
+            <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+           <mat-label>Min. Sale Price</mat-label>
+           <input matInput placeholder="" formControlName="min_sale_price" type="number">
+           <mat-error *ngIf="myError('item_code', 'required')">Item Code is required</mat-error>
+         </mat-form-field>
+         <mat-form-field appearance="legacy">
+           <mat-label>M.R.P</mat-label>
+           <input matInput placeholder="" formControlName="mrp" type="number">
+         </mat-form-field>
+         <mat-form-field appearance="legacy">
+          <mat-label>Customer Discount</mat-label>
+          <input matInput placeholder="" formControlName="customer_discount" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Dealer Discount</mat-label>
+          <input matInput placeholder="" formControlName="dealer_discount" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Whole Sale Rate</mat-label>
+          <input matInput placeholder="" formControlName="whole_salerate" type="number">
+        </mat-form-field>
+          <!-- </fieldset> -->
+         
+         
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="addItemlist">
+        <form [formGroup]="addItemlist" >
+          <ng-template matStepLabel>Stock and Unit Details:</ng-template>
+          <!-- <fieldset class="border p-8" >
+            <legend  class="float-none w-auto" >Product Details:</legend> -->
+            <mat-form-field appearance="legacy">
+              <mat-label>Unit</mat-label>
+              <mat-select>
+                <!-- <mat-option *ngFor="" >
+                 
+                </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+           <mat-form-field appearance="legacy">
+             <mat-label>Opening Stock</mat-label>
+            <input matInput placeholder="" formControlName="opening_stock" type="number">
+            <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+           <mat-label>Opening Stock Value</mat-label>
+           <input matInput placeholder="" formControlName="opening_stock_value" type="number">
+           <mat-error *ngIf="myError('item_code', 'required')">Item Code is required</mat-error>
+         </mat-form-field>
+         <mat-form-field appearance="legacy">
+          <mat-label>Maximum Quantity</mat-label>
+         <input matInput placeholder="" formControlName="maximum_qty" type="number">
+         <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+       </mat-form-field>
+       <mat-form-field appearance="legacy">
+        <mat-label>Stock Maintainance</mat-label>
+       <input matInput placeholder="" formControlName="stock_maintainance">
+       <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+     </mat-form-field>
+     <mat-form-field appearance="legacy">
+      <mat-label>Box Quantity</mat-label>
+     <input matInput placeholder="" formControlName="box_qty" type="number">
+     <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+   </mat-form-field>
+          <!-- </fieldset> -->
+         
+         
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="addItemlist">
+        <form [formGroup]="addItemlist">
+          <ng-template matStepLabel>GST Details:</ng-template>
+          <!-- <fieldset class="border p-8" >
+            <legend  class="float-none w-auto" >Product Details:</legend> -->
+            <mat-form-field appearance="legacy">
+              <mat-label>HSN/SAC Code</mat-label>
+            <input matInput placeholder="" formControlName="hsn_code">
+            <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>HSN Name</mat-label>
+          <input matInput placeholder="" formControlName="hsn_name">
+          <mat-error *ngIf="myError('hsn_code', 'required')">HSN name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>HSN Description</mat-label>
+        <input matInput placeholder="" formControlName="hsn_description">
+        <mat-error *ngIf="myError('hsn_code', 'required')">HSN Description is required</mat-error>
+      </mat-form-field>
+          <mat-form-field>
+            <mat-label>GST</mat-label>
+            <input matInput placeholder="" formControlName="GST" type="number">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>IGST</mat-label>
+            <input matInput placeholder="" formControlName="IGST" type="number">
+          </mat-form-field>
+    
+          <mat-form-field>
+            <mat-label>CGST</mat-label>
+            <input matInput placeholder="" formControlName="CGST" type="number">
+          </mat-form-field>
+    
+          <mat-form-field>
+            <mat-label>SGST</mat-label>
+            <input matInput placeholder="" formControlName="SGST" type="number">
+          </mat-form-field>
+    
+          <mat-form-field>
+            <mat-label>Cess (%)</mat-label>
+            <input matInput placeholder="" formControlName="cess" name="cess1" type="number">
+          </mat-form-field>
+          <!-- </fieldset> -->
+         <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="addItemlist">
+        <form [formGroup]="addItemlist">
+          <ng-template matStepLabel>Other Details:</ng-template>
+          <!-- <fieldset class="border p-8" >
+            <legend  class="float-none w-auto" >Product Details:</legend> -->
+          
+            <mat-form-field>
+              <mat-label>Low Level Limit </mat-label>
+              <input matInput placeholder="" formControlName="low_level_limit" type="number">
+            </mat-form-field>
+        
+            <mat-form-field appearance="legacy">
+              <mat-label>Product Type</mat-label>
+              <mat-select>
+                <!-- <mat-option *ngFor="" >
+               </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+        <mat-form-field>
+              <mat-label>Serial No </mat-label>
+              <input matInput placeholder="" formControlName="serial_no">
+            </mat-form-field>
+        
+         <mat-form-field appearance="legacy">
+              <mat-label>SKU</mat-label>
+              <input matInput placeholder="" formControlName="sku">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Rack Group</mat-label>
+              <input matInput placeholder="" formControlName="rack_group">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Rack Name</mat-label>
+              <input matInput placeholder="" formControlName="rack_name">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Quatation Status</mat-label>
+              <input matInput placeholder="" formControlName="quotation_status">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Tax Status</mat-label>
+              <input matInput placeholder="" formControlName="tax_status">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Allow Weighing Scale</mat-label>
+              <input matInput placeholder="" formControlName="allow_weighing_scale">
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Salesman Commision Amount</mat-label>
+              <input matInput placeholder="" formControlName="salesman_commission_amount">
+            </mat-form-field>
+            <mat-radio-group aria-label="Salesman Commision">
+              <mat-label>Salesman Commision:</mat-label>
+              <mat-radio-button value="1">Yes</mat-radio-button>
+              <mat-radio-button value="2">No</mat-radio-button>
+            </mat-radio-group>
+          
+         <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button (click)="saveItemlist()" type="submit" value="Submit"  (click)="validateForm()">save</button>
+          <p style="color: green;">{{message}}</p>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+
+  <ng-template #editable>
+    <div *ngIf="itemlist.id">
+      <mat-stepper orientation="vertical"  [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="addItemlist">
+          <form [formGroup]="addItemlist">
+            <ng-template  id="head" matStepLabel>Product Details:</ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>Group</mat-label>
+              <mat-select id="combo">
+                <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+              </mat-select>
+            </mat-form-field>
+    
+            <mat-form-field appearance="legacy">
+              <mat-label>Brand</mat-label>
+              <mat-select>
+                <!-- <mat-option *ngFor="" >
+             </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+    
+            <mat-form-field appearance="legacy">
+             <mat-label>Item Code</mat-label>
+             <input matInput placeholder="" formControlName="item_code">
+             <mat-error *ngIf="myError('item_code', 'required')">Item Code is required</mat-error>
+           </mat-form-field>
+           <mat-form-field appearance="legacy">
+             <mat-label>Item Name</mat-label>
+             <input matInput placeholder="" formControlName="item_name" >
+           </mat-form-field>
+           <mat-form-field appearance="legacy">
+            <mat-label>Print Name</mat-label>
+           <input matInput placeholder="" formControlName="print_name">
+           <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+         </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="addItemlist">
+          <form [formGroup]="addItemlist">
+            <ng-template matStepLabel>Price Details:</ng-template>
+            <!-- <fieldset class="border p-8" >
+              <legend  class="float-none w-auto" >Product Details:</legend> -->
+              <mat-form-field appearance="legacy">
+                <mat-label>Purchase Price</mat-label>
+               <input matInput placeholder="" formControlName="purchase_price">
+               <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+             </mat-form-field>
+             <mat-form-field appearance="legacy">
+               <mat-label>Sale Price</mat-label>
+              <input matInput placeholder="" formControlName="sale_price">
+              <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+             <mat-label>Min. Sale Price</mat-label>
+             <input matInput placeholder="" formControlName="min_sale_price">
+             <mat-error *ngIf="myError('item_code', 'required')">Item Code is required</mat-error>
+           </mat-form-field>
+           <mat-form-field appearance="legacy">
+             <mat-label>M.R.P</mat-label>
+             <input matInput placeholder="" formControlName="mrp" >
+           </mat-form-field>
+            <!-- </fieldset> -->
+           
+           
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="addItemlist">
+          <form [formGroup]="addItemlist">
+            <ng-template matStepLabel>Stock and Unit Details:</ng-template>
+            <!-- <fieldset class="border p-8" >
+              <legend  class="float-none w-auto" >Product Details:</legend> -->
+              <mat-form-field appearance="legacy">
+                <mat-label>Unit</mat-label>
+                <mat-select>
+                  <!-- <mat-option *ngFor="" >
+                   
+                  </mat-option> -->
+                </mat-select>
+              </mat-form-field>
+             <mat-form-field appearance="legacy">
+               <mat-label>Opening Stock</mat-label>
+              <input matInput placeholder="" formControlName="opening_stock">
+              <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+             <mat-label>Opening Stock Value</mat-label>
+             <input matInput placeholder="" formControlName="opening_stock_value">
+             <mat-error *ngIf="myError('item_code', 'required')">Item Code is required</mat-error>
+           </mat-form-field>
+            <!-- </fieldset> -->
+           
+           
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="addItemlist">
+          <form [formGroup]="addItemlist">
+            <ng-template matStepLabel>GST Details:</ng-template>
+            <!-- <fieldset class="border p-8" >
+              <legend  class="float-none w-auto" >Product Details:</legend> -->
+              <mat-form-field appearance="legacy">
+                <mat-label>HSN/SAC Code</mat-label>
+              <input matInput placeholder="" formControlName="hsn_code">
+              <mat-error *ngIf="myError('hsn_code', 'required')">HSN code is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>IGST</mat-label>
+              <input matInput placeholder="" formControlName="p1_IGST">
+            </mat-form-field>
+      
+            <mat-form-field>
+              <mat-label>CGST</mat-label>
+              <input matInput placeholder="" formControlName="p1_CGST">
+            </mat-form-field>
+      
+            <mat-form-field>
+              <mat-label>SGST</mat-label>
+              <input matInput placeholder="" formControlName="p1_SGST">
+            </mat-form-field>
+      
+            <mat-form-field>
+              <mat-label>Cess (%)</mat-label>
+              <input matInput placeholder="" formControlName="cess" name="cess1">
+            </mat-form-field>
+            <!-- </fieldset> -->
+           <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="addItemlist">
+          <form [formGroup]="addItemlist">
+            <ng-template matStepLabel>Other Details:</ng-template>
+            <!-- <fieldset class="border p-8" >
+              <legend  class="float-none w-auto" >Product Details:</legend> -->
+            
+              <mat-form-field>
+                <mat-label>Low Level Limit </mat-label>
+                <input matInput placeholder="" formControlName="low_level_limit">
+              </mat-form-field>
+          
+              <mat-form-field appearance="legacy">
+                <mat-label>Product Type</mat-label>
+                <mat-select>
+                  <!-- <mat-option *ngFor="" >
+                 </mat-option> -->
+                </mat-select>
+              </mat-form-field>
+          <mat-form-field>
+                <mat-label>Serial No </mat-label>
+                <input matInput placeholder="" formControlName="serial_no">
+              </mat-form-field>
+          
+           <mat-form-field appearance="legacy">
+                <mat-label>SKU</mat-label>
+                <input matInput placeholder="" formControlName="sku">
+              </mat-form-field>
+           <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+  
+        <mat-step [stepControl]="addItemlist">
+          <form [formGroup]="addItemlist">
+            <ng-template matStepLabel>Product Description:</ng-template>
+            <textarea matInput 
+              placeholder="Comment" 
+              formControlName="product_description" 
+              >
+           </textarea>
+           <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+  
+       
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="updateItemlist()">Edit</button>
+            <p style="color: green;">{{message}}</p>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </ng-template>
+</div>
+

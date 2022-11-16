@@ -1,0 +1,94 @@
+<!----Side Menu start-->
+<div *ngIf="adminMode; else usermode">
+  <mat-sidenav-container fullscreen>
+     <mat-sidenav mode="side" #sidenav closed position="start" style="background-color: white;">
+      <mat-nav-list>
+         <a mat-list-item class="profile" >
+          <i class="las la-user-tie Profile"></i> <label id="profile" (click)="triggerClick($event)">Profile</label></a>
+        <hr style="color: black;">
+        <a mat-list-item class="billing">
+          <i class="las la-file-invoice"></i><label routerLink="/billingdetails">Billing</label>
+        </a>
+        <hr style="color: black;">
+          <div class="dropdown">
+            <i class="las la-cogs cogs"></i><a id="drp" class="dropbtn " data-toggle="dropdown">Setup</a>
+            <ul class="dropdown-menu scrollable-menu" style="border: none;margin-right: 29px;">
+            <li> <a  routerLink="/company"> <i class="las la-business-time"></i> Company </a></li>
+            <hr>
+            <li>  <a href="#"> <i class="las la-cog"></i> Setting </a></li>
+            <hr>
+            <li>  <a href="/brand"> <i class="las la-trademark"></i> Brand </a></li>
+            <hr>
+            <li>  <a href="/group"> <i class="las la-users"></i> Group </a></li>
+            <hr>
+            <li>  <a href="/unit"> <i class="las la-balance-scale"></i> Unit </a></li>
+            <hr>
+            <li>  <a href="/department"> <i class="las la-store"></i> Department </a></li>
+            <hr>
+            <li>  <a href="/designation"> <i class="las la-map-pin"></i> Designation </a></li>
+            <hr>
+            <li> <a href="/holiday"> <i class="las la-suitcase-rolling"></i> Holiday </a> </li>
+            <hr>
+            <li> <a href="/client"> <i class="las la-file-alt"></i>Client Info </a> </li>
+            <hr>
+            <li> <a href="/hsn"> <i class="las la-percentage"></i> HSN Info </a> </li>
+            <hr>
+            <li> <a href="/staff"> <i class="las la-percentage"></i> Staff </a> </li>
+            <hr>
+            <li> <a href="/supplier"> <i class="las la-percentage"></i> Supplier</a> </li>
+            <hr>
+           </ul>
+          </div>
+         </mat-nav-list>
+     </mat-sidenav>
+    <!----Side Menu End-->
+    <!----Navbar start-->
+    <mat-sidenav-content>
+      <mat-toolbar style="background-color:#A11F21;color:white">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <i class="las la-bars menu" ></i>
+        </button>
+        <h4 id="head1">Nellai System </h4>
+        <div class="spacer" style="flex:1 1 auto"></div>
+        <i class="las la-user user" id="user" routerLink="home"></i>
+        <i class="las la-home home" id="user"  routerLink="home"></i>
+        <i class="las la-print print" id="print" routerLink="/billingdetails"></i>
+        <i class="las la-power-off power" id="power" (click)="RemoveToken_user()"></i>
+      </mat-toolbar>
+      <!----Navbar End-->
+        <app-home></app-home>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<ng-template #usermode>
+ <mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" #sidenav closed position="start" style="background-color: white;">
+      <mat-nav-list>
+        <a mat-list-item class="profile">
+            <i class="las la-user-tie Profile"></i> <label>Profile</label></a>
+          <hr style="color: black;">
+          <a mat-list-item class="billing">
+            <i class="las la-file-invoice"></i><label routerLink="/billingdetails">Billing</label>
+          </a>
+          <hr style="color: black;">
+   </mat-nav-list>
+   </mat-sidenav>
+  <!----Side Menu End-->
+  <!----Navbar start-->
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color:#A11F21;color:white">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <i class="las la-bars menu" ></i>
+      </button>
+      <h4 id="head1">Nellai System </h4>
+      <div class="spacer" style="flex:1 1 auto"></div>
+      <i class="las la-user user" id="user" routerLink="home"></i>
+      <i class="las la-home home" id="user"  routerLink="home"></i>
+      <i class="las la-print print" id="print" routerLink="/billingdetails"></i>
+      <i class="las la-power-off power" id="power" (click)="RemoveToken_user()"></i>
+    </mat-toolbar>
+    <!----Navbar End-->
+      <app-home></app-home>
+  </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-template>

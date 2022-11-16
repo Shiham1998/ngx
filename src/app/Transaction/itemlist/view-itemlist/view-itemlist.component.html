@@ -1,0 +1,251 @@
+<div class="cll">
+  <nav class="navbar" style="display: flex;">
+    <i class="las la-arrow-left left" routerLink="/itemlist"> <a class="navbar-brand"
+        style="color: white;font-weight:bold;">Item Details</a></i>
+    <form class="form-inline" style="float: right;">
+      <i class="las la-pen" routerLink="/additem/{{itemlist.id}}" style="font-size: 30px;"></i> <i
+        class="las la-trash-alt" href="#ConfirmModal" data-toggle="modal" style="font-size: 30px;"></i>
+    </form>
+  </nav>
+
+  <mat-stepper orientation="vertical"  [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="viewItemlist">
+      <form [formGroup]="viewItemlist">
+        <ng-template  id="head" matStepLabel>Product Details:</ng-template>
+        <mat-form-field appearance="legacy">
+          <mat-label>Group</mat-label>
+          <mat-select id="combo">
+          
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Brand</mat-label>
+          <mat-select>
+            <!-- <mat-option *ngFor="" >
+         </mat-option> -->
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+         <mat-label>Item Code</mat-label>
+         <input matInput placeholder="" formControlName="item_code" readonly> 
+        
+       </mat-form-field>
+       <mat-form-field appearance="legacy">
+         <mat-label>Item Name</mat-label>
+         <input matInput placeholder="" formControlName="item_name" readonly>
+       </mat-form-field>
+       <mat-form-field appearance="legacy">
+        <mat-label>Print Name</mat-label>
+       <input matInput placeholder="" formControlName="print_name" readonly>
+       
+     </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="viewItemlist">
+      <form [formGroup]="viewItemlist">
+        <ng-template matStepLabel>Price Details:</ng-template>
+        <!-- <fieldset class="border p-8" >
+          <legend  class="float-none w-auto" >Product Details:</legend> -->
+          <mat-form-field appearance="legacy">
+            <mat-label>Purchase Price</mat-label>
+           <input matInput placeholder="" formControlName="purchase_price" readonly>
+          
+         </mat-form-field>
+         <mat-form-field appearance="legacy">
+           <mat-label>Sale Price</mat-label>
+          <input matInput placeholder="" formControlName="sale_price" readonly>
+        
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+         <mat-label>Min. Sale Price</mat-label>
+         <input matInput placeholder="" formControlName="min_sale_price" readonly>
+      
+       </mat-form-field>
+       <mat-form-field appearance="legacy">
+         <mat-label>M.R.P</mat-label>
+         <input matInput placeholder="" formControlName="mrp" readonly>
+       </mat-form-field>
+        <!-- </fieldset> -->
+       
+       
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="viewItemlist">
+      <form [formGroup]="viewItemlist">
+        <ng-template matStepLabel>Stock and Unit Details:</ng-template>
+        <!-- <fieldset class="border p-8" >
+          <legend  class="float-none w-auto" >Product Details:</legend> -->
+          <mat-form-field appearance="legacy">
+            <mat-label>Unit</mat-label>
+            <mat-select>
+              <!-- <mat-option *ngFor="" >
+               
+              </mat-option> -->
+            </mat-select>
+          </mat-form-field>
+         <mat-form-field appearance="legacy">
+           <mat-label>Opening Stock</mat-label>
+          <input matInput placeholder="" formControlName="opening_stock" readonly>
+        
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+         <mat-label>Opening Stock Value</mat-label>
+         <input matInput placeholder="" formControlName="opening_stock_value" readonly>
+        
+       </mat-form-field>
+        <!-- </fieldset> -->
+       
+       
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="viewItemlist">
+      <form [formGroup]="viewItemlist">
+        <ng-template matStepLabel>GST Details:</ng-template>
+        <!-- <fieldset class="border p-8" >
+          <legend  class="float-none w-auto" >Product Details:</legend> -->
+          <mat-form-field appearance="legacy">
+            <mat-label>HSN/SAC Code</mat-label>
+          <input matInput placeholder="" formControlName="hsn_code" readonly>
+         
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>IGST</mat-label>
+          <input matInput placeholder="" formControlName="p1_IGST" readonly>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>CGST</mat-label>
+          <input matInput placeholder="" formControlName="p1_CGST" readonly>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>SGST</mat-label>
+          <input matInput placeholder="" formControlName="p1_SGST" readonly>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Cess (%)</mat-label>
+          <input matInput placeholder="" formControlName="cess" name="cess1" readonly>
+        </mat-form-field>
+        <!-- </fieldset> -->
+       <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="viewItemlist">
+      <form [formGroup]="viewItemlist">
+        <ng-template matStepLabel>Other Details:</ng-template>
+        <!-- <fieldset class="border p-8" >
+          <legend  class="float-none w-auto" >Product Details:</legend> -->
+          <mat-form-field appearance="legacy">
+            <mat-label>Sale Discount</mat-label>
+            <input matInput placeholder="" formControlName="sale_discount" readonly>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Low Level Limit </mat-label>
+            <input matInput placeholder="" formControlName="low_level_limit" readonly>
+          </mat-form-field>
+      
+          <mat-form-field appearance="legacy">
+            <mat-label>Product Type</mat-label>
+            <mat-select>
+              <!-- <mat-option *ngFor="" >
+             </mat-option> -->
+            </mat-select>
+          </mat-form-field>
+      <mat-form-field>
+            <mat-label>Serial No </mat-label>
+            <input matInput placeholder="" formControlName="serial_no" readonly>
+          </mat-form-field>
+       <mat-form-field>
+            <mat-label>CostPrice</mat-label>
+            <input matInput placeholder="" formControlName="costprice" readonly>
+          </mat-form-field>
+       <mat-form-field appearance="legacy">
+            <mat-label>SKU</mat-label>
+            <input matInput placeholder="" formControlName="sku" readonly>
+          </mat-form-field>
+       <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="viewItemlist">
+      <form [formGroup]="viewItemlist">
+        <ng-template matStepLabel>Product Description:</ng-template>
+        <textarea matInput 
+          placeholder="Comment" 
+          formControlName="product_description" 
+          >
+       </textarea>
+       <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+   
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
+
+<!-- delete popup show for first time clicking a list delete button -->
+<div id="ConfirmModal" class="modal">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <h4 class="modal-title w-100"> <i class="fa fa-warning fa-5x" id="warning"></i>Are you sure?</h4>
+
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete these records? </p>
+        <p>This process cannot be undone.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="btn" class="btn btn-danger" (click)="deleteItemlists(ditemlistid)" data-toggle="modal"
+          data-target="#SuccessModalDelete" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div #SuccessModalDelete id="SuccessModalDelete" class="modal fade">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <i class="fa fa-info-circle fa-5x center" id="delt_model" aria-hidden="true"></i>
+        <p id="smsg"> ItemList Deleted successfully</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/itemlist">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

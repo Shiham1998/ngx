@@ -1,0 +1,162 @@
+.mt-100 {
+    margin-top: 100px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #d2d2dc;
+    border-radius: 11px;
+    transition: transform .1s;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+}
+
+.card:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.card .card-body {
+    padding: 1rem 1rem
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem
+}
+
+p {
+    font-size: 14px;
+}
+
+h4 {
+    margin-top: 18px;
+}
+
+a i {
+    font-size: 30px;
+    color: #CC252C
+}
+
+#counter {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    width: 490px;
+    margin-bottom: 9px;
+    word-break: break-all;
+    word-spacing: 10px;
+    word-wrap: break-word;
+}
+
+body {
+    background: #eee;
+}
+
+.review-text {
+    font-size: 11px;
+}
+
+.num-comment span,
+.num-comment i {
+    font-size: 26px;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.card {
+    flex: 0 0 auto;
+}
+
+.card-body:hover {
+
+    box-shadow: 0 15px 10px rgba(163, 1, 1, 0.4);
+
+}
+
+.card1 {
+    width: 60px;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+i {
+    font-size: 120px;
+    color: #A11F21;
+}
+
+.outlet {
+    color: #A11F21;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.items {
+    color: #A11F21;
+    font-weight: bold;
+}
+
+#sale1 {
+    width: 60px;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+#sale2 {
+    width: 60px;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+#counter1 {
+    text-align: center;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+#counter2 {
+    text-align: center;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#counter1 i {
+    font-size: 40px;
+    color: #A11F21;
+}
+
+#counter2 i {
+    font-size: 40px;
+    color: #A11F21;
+}
+#sales{
+    margin-right: 10px;
+    margin-top: 20px;
+}
+h4{
+    font-family: Robot;
+}
+.scrolling-wrapper{
+    font-family: Robot;
+}

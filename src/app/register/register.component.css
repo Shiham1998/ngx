@@ -1,0 +1,243 @@
+
+@media (min-width: 360px) { 
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  } 
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) { 
+.logo-center{
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+} 
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+ }
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+  .container{
+    padding-top: 50px;
+    width:500px;
+  }
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+ }
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+  div {
+    font-size: 0.80rem;
+  }
+  .container{
+    padding-top: 50px;
+    width:500px;
+  }
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+ }
+
+/* XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) { 
+  .container{
+    padding-top: 50px;
+    width:500px;
+  }
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+}
+
+
+
+
+.modal-confirm {
+  color: #636363;
+  width: 400px;
+}
+
+.modal-confirm .modal-content {
+  padding: 0px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+.modal-confirm .modal-header {
+  border-bottom: none;
+  position: relative;
+}
+
+.modal-confirm h4 {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -10px;
+}
+
+.modal-confirm .close {
+  position: absolute;
+  top: 15px;
+  right: 15px
+}
+
+.modal-confirm .modal-body {
+  padding: 0px;
+  color: #999;
+}
+
+.modal-confirm .modal-footer {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 10px 15px 25px;
+}
+
+.modal-confirm .modal-footer a {
+  color: #999;
+}
+
+.modal-confirm .icon-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 9;
+  text-align: center;
+  border: 3px solid #f15e5e;
+}
+
+.modal-confirm .icon-box i {
+  color: #f15e5e;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+.modal-confirm .btn,
+.modal-confirm .btn:active {
+  color: #fff;
+  border-radius: 4px;
+  background: #60c7c1;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  min-width: 120px;
+  border: none;
+  min-height: 40px;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+
+.modal-confirm .btn-secondary {
+  background: #c1c1c1;
+}
+
+.modal-confirm .btn-secondary:hover,
+.modal-confirm .btn-secondary:focus {
+  background: #a8a8a8;
+}
+
+.modal-confirm .btn-danger {
+  background: #f15e5e;
+}
+
+.modal-confirm .btn-danger:hover,
+.modal-confirm .btn-danger:focus {
+  background: #ee3535;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+#reg_head{
+  border:1px solid #A11F21; 
+}
+#register{
+  background-color:#A11F21;color: white;font-size: 1.25rem;
+}
+#form_grp{
+  margin-top: 10px; 
+}
+#err{
+  position: absolute; 
+          font-size: 12px; margin-top: 2px;color: red; 
+}
+#warning{
+  font-size: 23px;color:orange;padding: 10px;
+}
+#cnfrm_pass{
+  top:30;position: absolute; font-size: 12px; margin-top: 52px;
+}
+#reg_btn{
+ background-color:#A11F21; border-radius: 12px;
+}
+#msg{
+  color: green; 
+}
+
+.profile{
+ border:1px solid #A11F21;
+}
+.profilecontent{
+background-color:#A11F21;
+color: white;
+font-size: 1.25rem;
+}
+.firstname{
+  position: absolute; 
+  font-size: 12px; 
+  margin-top: 2px;color: red; 
+}
+#update{
+  background-color:#A11F21; 
+  border-radius: 12px;
+}
+#del{
+  background-color:#A11F21; 
+  border-radius: 12px;
+  margin-top: 13px;
+}
+mat-form-field{
+  width:80%;
+  margin-left: 40px;
+}
+mat-label{
+font-size: 20px;
+font-weight: bold;
+font-family: Robot;
+}
+#register{
+  font-family: Robot;
+}
+#err{
+  margin-bottom: 15%;
+}
+input{
+  font-weight: bold;
+}

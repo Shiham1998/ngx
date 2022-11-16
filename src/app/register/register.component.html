@@ -1,0 +1,181 @@
+<div *ngIf="addMode; else editable" class="container aligns-items-center mx-auto pl-0 pt-3 m-0">
+  <div id="reg_head">
+    <div id="register">
+      <i class="las la-arrow-left" routerLink="/login"></i> Register Here
+    </div>
+
+    <form [formGroup]="addUser" oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'
+      id="form_grp" class="was-validated">
+     
+      <mat-form-field appearance="legacy" >
+        <mat-label>First Name</mat-label>
+        <input matInput id="staticEmail" name="uname" maxlength="30" formControlName="user_first_name" required>
+        <!-- <div id="err"
+        *ngIf="addUser.controls['user_first_name'].touched && (addUser.controls['user_first_name'].hasError('required'))">
+        *Please fill first name
+      </div> -->
+      </mat-form-field>
+      
+     
+      <mat-form-field appearance="legacy">
+        <mat-label>Last Name</mat-label>
+        <input matInput id="inputPassword" name="psw" maxlength="30" formControlName="user_last_name">
+      </mat-form-field>
+
+    
+      <mat-form-field appearance="legacy">
+        <mat-label>Email</mat-label>
+        <input matInput id="inputPassword" name="psw" required maxlength="30" formControlName="user_email">
+      </mat-form-field>
+      <!-- <div id="err"
+        *ngIf="addUser.controls['user_email'].touched && (addUser.controls['user_email'].hasError('required'))">
+        *Please fill email
+      </div> -->
+    
+      <mat-form-field appearance="legacy" >
+        <mat-label>Mobile Number</mat-label>
+        <span matPrefix style="font-weight: bold;">+91</span>
+        <input matInput  #mobilenum maxlength="10" id="inputPassword" name="psw" required maxlength="10" formControlName="user_mobile"
+          pattern="[789][0-9]{9}" style="margin-left: 5px;font-weight: bold;">
+          <mat-hint>{{mobilenum.value.length}} / 10</mat-hint>
+      </mat-form-field>
+      <!-- <div id="err"
+        *ngIf="addUser.controls['user_email'].touched && (addUser.controls['user_email'].hasError('required'))">
+        *Please fill mobile number
+      </div> -->
+    
+      <mat-form-field appearance="legacy">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput id="inputPassword" name="psw" required maxlength="30" formControlName="user_pwd" name=up>
+      </mat-form-field>
+      <!-- <div id="err"
+        *ngIf="addUser.controls['user_pwd'].touched && (addUser.controls['user_pwd'].hasError('required')) ">
+        *Please enter password
+      </div> -->
+     
+      <mat-form-field appearance="legacy">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput id="inputPassword" name="psw" required maxlength="30"
+        formControlName="user_confirmpwd" name=up2>
+      </mat-form-field>
+      <!-- <div class="text-danger" id="cnfrm_pass"
+      *ngIf="addUser.value.user_pwd !== addUser.value.user_confirmpwd && addUser.controls['user_confirmpwd'].touched ">
+      Password don't match.
+    </div> -->
+
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="" formControlName="user_address">
+      </mat-form-field>
+
+      <div class="d-grid col-12 mx-auto pt-3 pb-3 m-0" style="font-family: Robot;">
+        <input id="reg_btn" type="submit" value="Register" (click)="saveUser()" [disabled]="addUser.invalid"
+          class="btn btn-primary btn-sm ">
+      </div>
+      <div style="font-family: Robot;">
+        <p id="msg">{{message}}</p>
+        <p class="text-center text-muted  mb-2">Have already an account? <a routerLink="/login"
+            class="fw-bold text-body"><u>Login here</u></a></p>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div class="container aligns-items-center mx-auto pl-0 pt-3 m-0">
+    <div class="profile">
+      <div class="profilecontent">
+        Your Profile
+      </div>
+
+      <form [formGroup]="addUser">
+        <div class="mb-6 row  pt-1 m-0">
+          <label for="staticEmail">First Name</label>
+
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="staticEmail" name="uname" maxlength="30"
+              formControlName="user_first_name" required>
+            <div class="firstname"
+              *ngIf="addUser.controls['user_first_name'].touched && (addUser.controls['user_first_name'].hasError('required'))">
+              *Please fill first name
+
+            </div>
+          </div>
+
+        </div>
+        <div class="mb-6 row pt-3 m-0">
+          <label for="inputPassword">Last Name</label>
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="inputPassword" name="psw" maxlength="30"
+              formControlName="user_last_name">
+
+          </div>
+        </div>
+
+        <div class="mb-6 row pt-3 m-0">
+          <label for="inputPassword">Email</label>
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="inputPassword" name="psw" required maxlength="30"
+              formControlName="user_email">
+
+          </div>
+        </div>
+
+        <div class="mb-6 row pt-3 m-0">
+          <label for="inputPassword">Mobile Number</label>
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="inputPassword" name="psw" required maxlength="30"
+              formControlName="user_mobile">
+
+          </div>
+        </div>
+
+        <div class="mb-6 row pt-3 m-0">
+          <label for="inputPassword">Address</label>
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="inputPassword" name="psw" required maxlength="30"
+              formControlName="user_address">
+
+          </div>
+        </div>
+
+        <div class="d-grid col-12 mx-auto pt-3 pb-3 m-0">
+          <input type="submit" value="Update Your Profile" id="update" (click)="updateUser()"
+            class="btn btn-primary btn-sm ">
+          <input type="submit" value="Delete Your Profile" href="#ConfirmModal" data-toggle="modal" id="del"
+            (click)="Passidfromdeletemodal(userid)" class="btn btn-primary btn-sm ">
+
+        </div>
+        <div>
+          <p style="color: green;">{{message}}</p>
+          <p class="text-center text-muted  mb-2">Have already an account? <a routerLink="/login"
+              class="fw-bold text-body"><u>Login here</u></a></p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+
+<div id="ConfirmModal" class="modal">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <h4 class="modal-title w-100"> <i class="fa fa-warning fa-5x" id="warning"></i>Are you sure?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete Your Profile? </p>
+        <p>This process cannot be undone.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+        <button type="btn" class="btn btn-danger" (click)="deleteUser(userid)" data-toggle="modal"
+          data-target="#SuccessModalDelete" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

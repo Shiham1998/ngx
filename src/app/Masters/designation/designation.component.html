@@ -1,0 +1,62 @@
+<div>
+  <nav class="navbar" style="display: flex;">
+    <i class="las la-arrow-left left" routerLink="/layout"> <a class="navbar-brand"
+        style="color:white;font-weight:bold;">Designation</a>
+    </i>
+  </nav>
+
+
+  <div *ngFor="let designationlist of designationlistdata let i=index">
+    <div class="row justify-content-center" style="margin-top:10px;">
+      <div class="col-sm-6">
+        <div class="card shadow bg-white rounded">
+          <div class="card-body" style="font-weight:bold;">
+            <h5 class="card-title">
+              <i class="las la-trash-alt" data-toggle="modal" id="edit1" href="#ConfirmModal"
+                (click)="Passidfromdeletemodal(designationlist.id)"></i>
+              <i class="las la-pen" id="edit1" routerLink="/adddesignation/{{designationlist.id}}"></i>
+            </h5>
+            <span class="card-text">S.No:</span><label id="designationid">{{i+1}}</label><br />
+            <span class="card-text">Designation Name:</span><label id="designationname">{{designationlist.name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="ConfirmModal" class="modal" *ngFor="let designationlist of designationlistdata">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column" data-target=".bd-example-modal-sm">
+          <h4 class="modal-title"> Are you sure?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete <strong style="color:#60c7c1;">{{designationlist.name}}</strong> record? </p>
+          <p>This process cannot be undone.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+          <button type="btn" class="btn btn-outline-danger" data-toggle="modal" data-target="#SuccessModalDelete"
+            data-dismiss="modal" style="background-color: #A11F21;"
+            (click)="deletedesignation(getdesignationId_)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div #SuccessModalDelete id="SuccessModalDelete" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <i class="fa fa-info-circle fa-5x center" aria-hidden="true"></i>
+          <p id="smsg">Designation Details Deleted successfully</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="float" routerLink="/adddesignation">
+    <i class="la la-plus my-float"></i>
+  </a>
+</div>

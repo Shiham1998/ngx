@@ -1,0 +1,436 @@
+<div>
+ <div *ngIf="addMode">
+  <nav class="navbar" style="display: flex;">
+    <i class="las la-arrow-left left" routerLink="/client"> <a class="navbar-brand" style="color: white;font-weight:bold;">Add Client Information</a></i>
+      <form class="form-inline" style="float: right;" >        
+    </form>
+  </nav>
+ </div>  
+ <div *ngIf="!addMode">
+  <nav class="navbar" style="display: flex;">
+    <i class="las la-arrow-left left" routerLink="/client"> <a class="navbar-brand" style="color: white;font-weight:bold;">Edit Client Information</a></i>
+      <form class="form-inline" style="float: right;" >        
+    </form>
+  </nav>
+ </div>  
+  <!-- <button style="float:right;margin-right:1rem;font-size:10pt;">Check GSTIN/UIN Status</button><br/> -->
+  <div class="cll" *ngIf="addMode; else editable">
+    <mat-stepper orientation="vertical" #stepper>
+      
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel  ><b>Profile Pic</b></ng-template>
+          <input type="file" style="font-weight:none;font-size:medium;"/>
+        </form>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel><b>Client Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="full_name" required/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Billing Address</mat-label>
+            <input matInput formControlName="billing_address" required/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>State</mat-label>
+            <b>
+              <mat-select formControlName="state">
+                <b><mat-option value="option1"  *ngFor="let state of stateList" value="{{state.name}}">
+                 {{ state.name }}
+                </mat-option></b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>PIN Code</mat-label>
+            <input matInput #pincode maxlength="6" placeholder="Ex. 627103" formControlName="pincode" (keypress)="numberOnly($event)">
+            <mat-hint>{{pincode.value.length}} / 6</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Country</mat-label>
+           <b>
+            <mat-select formControlName="country">
+              <b>
+                <mat-option value="option1"  *ngFor="let country of countryList" value="{{country.name}}">
+                {{ country.name }}
+                </mat-option>
+              </b>
+            </mat-select>
+           </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Email ID</mat-label>
+            <input type="email" matInput formControlName="emailid" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Phone No</mat-label>
+            <input matInput formControlName="phoneno" (keypress)="numberOnly($event)" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Contact No</mat-label>
+            <input matInput formControlName="contactno" (keypress)="numberOnly($event)" required/>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Tax Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>PAN No.</mat-label>
+            <input matInput formControlName="panno"  (keypress)="numberOnly($event)" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>GSTIN</mat-label>
+            <input matInput formControlName="GSTin" />
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Account Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Type</mat-label>
+             <b>
+              <mat-select formControlName="Type">
+                <b>
+                  <mat-option value="Debit">Debit</mat-option>
+                  <mat-option value="Credit">Credit</mat-option>
+                </b>
+              </mat-select>
+            </b> 
+           
+          
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Openning Balance</mat-label>
+            <span matPrefix><b>Rs.</b></span>
+            <input matInput formControlName="openingbalance"  (keypress)="numberOnly($event)"/>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Identity Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Document Type</mat-label>
+            <b>
+              <mat-select formControlName="doctype">
+                <b>
+                <mat-option value=".pdf">.pdf</mat-option>
+                <mat-option value=".doc">.doc</mat-option>
+                </b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Document No.</mat-label>
+            <input matInput formControlName="docno" />
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails"> 
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Anniversary</b></ng-template>
+          <mat-checkbox (change)="checkCheckBoxvalue($event,1)">Applicable</mat-checkbox> 
+          <mat-form-field appearance="legacy">
+            <mat-label>Date Of Birth</mat-label>
+            <input type="date" matInput id="date1" formControlName="DOB" />
+          </mat-form-field>
+          <mat-checkbox (change)="checkCheckBoxvalue($event,2)">Applicable</mat-checkbox> 
+          <mat-form-field appearance="legacy">
+            <mat-label>Anniversary</mat-label>
+            <input matInput type="date" id="date2" formControlName="anniversary"/>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Other Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Credit Allowed</mat-label>
+           <b>
+            <mat-select formControlName="creditallowed">
+              <b>
+                <mat-option value=true>Yes</mat-option>
+                <mat-option value=false>No</mat-option>
+              </b>
+            </mat-select>
+           </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Credit Limit</mat-label>
+            <span matPrefix><b>Rs.</b></span>
+            <input matInput formControlName="creditlimit"  (keypress)="numberOnly($event)"/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Remork / Note</mat-label>
+            <input matInput formControlName="remarknote" />
+          </mat-form-field>
+        </form>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+     </mat-step>
+
+     <mat-step>
+        <ng-template matStepLabel><b>Done</b></ng-template>
+        <p class="cll">You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button [disabled]="fg_clientdetails.invalid" (click)="Saveclient()">Save</button>
+          <p style="color: green;"></p>
+        </div>
+    </mat-step>
+
+    </mat-stepper>
+
+  </div>
+ <!---------------------------------------------------------- editable--------------------------------------------->
+  
+ <ng-template #editable>
+  <div class="cll">
+    <mat-stepper orientation="vertical" #stepper>
+    
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Profile Pic</b></ng-template>
+          <input type="file" style="font-weight:none;font-size:medium;"/>
+        </form>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel><b>Client Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="full_name" required/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Billing Address</mat-label>
+            <input matInput formControlName="billing_address" required/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>State</mat-label>
+            <b>
+              <mat-select formControlName="state">
+                <b><mat-option value="option1"  *ngFor="let state of stateList" value="{{state.name}}">
+                 {{ state.name }}
+                </mat-option></b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>PIN Code</mat-label>
+            <input matInput formControlName="pincode" maxlength="10" (keypress)="numberOnly($event)"/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Country</mat-label>
+           <b>
+            <mat-select formControlName="country">
+              <b>
+                <mat-option value="option1"  *ngFor="let country of countryList" value="{{country.name}}">
+                {{ country.name }}
+                </mat-option>
+              </b>
+            </mat-select>
+           </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Email ID</mat-label>
+            <input type="email" matInput formControlName="emailid" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Phone No</mat-label>
+            <input matInput formControlName="phoneno" (keypress)="numberOnly($event)" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Contact No</mat-label>
+            <input matInput formControlName="contactno" (keypress)="numberOnly($event)" required/>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Tax Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>PAN No.</mat-label>
+            <input matInput formControlName="panno"  (keypress)="numberOnly($event)" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>GSTIN</mat-label>
+            <input matInput formControlName="GSTin" />
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Account Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Type</mat-label>
+             <b>
+              <mat-select formControlName="Type">
+                <b>
+                  <mat-option value="Debit">Debit</mat-option>
+                  <mat-option value="Credit">Credit</mat-option>
+                </b>
+              </mat-select>
+            </b> 
+           
+          
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Openning Balance</mat-label>
+            <span matPrefix><b>Rs.</b></span>
+            <input matInput formControlName="openingbalance"  (keypress)="numberOnly($event)"/>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Identity Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Document Type</mat-label>
+            <b>
+              <mat-select formControlName="doctype">
+                <b>
+                <mat-option value=".pdf">.pdf</mat-option>
+                <mat-option value=".doc">.doc</mat-option>
+                </b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Document No.</mat-label>
+            <input matInput formControlName="docno" />
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails"> 
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Anniversary</b></ng-template>
+          <mat-checkbox (change)="checkCheckBoxvalue($event,1)">Applicable</mat-checkbox> 
+          <mat-form-field appearance="legacy">
+            <mat-label>Date Of Birth</mat-label>
+            <input type="date" matInput id="date1" formControlName="DOB" />
+          </mat-form-field>
+          <mat-checkbox (change)="checkCheckBoxvalue($event,2)">Applicable</mat-checkbox> 
+          <mat-form-field appearance="legacy">
+            <mat-label>Anniversary</mat-label>
+            <input matInput type="date" id="date2" formControlName="anniversary"/>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fg_clientdetails">
+        <form [formGroup]="fg_clientdetails">
+          <ng-template matStepLabel ><b>Other Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Credit Allowed</mat-label>
+           <b>
+            <mat-select formControlName="creditallowed">
+              <b>
+                <mat-option value=true>Yes</mat-option>
+                <mat-option value=false>No</mat-option>
+              </b>
+            </mat-select>
+           </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Credit Limit</mat-label>
+            <span matPrefix><b>Rs.</b></span>
+            <input matInput formControlName="creditlimit"   (keypress)="numberOnly($event)"/>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Remork / Note</mat-label>
+            <input matInput formControlName="remarknote" />
+          </mat-form-field>
+        </form>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+     </mat-step>
+
+     <mat-step>
+        <ng-template matStepLabel><b>Done</b></ng-template>
+        <p class="cll">You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button [disabled]="fg_clientdetails.invalid" (click)="UpdateclientByid()">Edit</button>
+          <p style="color: green;"></p>
+        </div>
+    </mat-step>
+
+    </mat-stepper>
+  </div>
+  </ng-template>
+  <button style="font-size:10pt;margin:2rem;border: 1px solid #A11F21;">Check GSTIN/UIN Status</button><br/>
+</div>

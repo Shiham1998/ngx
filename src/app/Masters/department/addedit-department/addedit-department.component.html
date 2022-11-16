@@ -1,0 +1,36 @@
+<div>
+    <div *ngIf="addMode">
+        <nav class="navbar" style="display: flex;">
+            <i class="las la-arrow-left left" routerLink="/department"> <a class="navbar-brand"
+                style="color:white;font-weight:bold;">Add Department</a>
+            </i>
+        </nav>
+    </div>
+    <div *ngIf="!addMode">
+        <nav class="navbar" style="display: flex;">
+            <i class="las la-arrow-left left" routerLink="/department"> <a class="navbar-brand"
+                style="color:white;font-weight:bold;">Edit Department</a>
+            </i>
+        </nav>
+    </div>
+    <div *ngIf="addMode; else editable" >
+        <form  [formGroup]="fg_department" class="was-validated">
+            <mat-form-field class="lengthinput">
+                <mat-label>Department name</mat-label>
+                <input matInput formControlName="name" required/>
+            </mat-form-field><br/>
+            <button type="button" type="button"class="btn btn-danger" style="font-weight:bold;font-family: Robot;" (click)="SaveDepartment()" [disabled]="fg_department.invalid">Save</button><br/>    
+        </form>
+    </div>
+    <ng-template  #editable>
+        <div>
+            <form  [formGroup]="fg_department" class="was-validated">
+                <mat-form-field class="lengthinput">
+                    <mat-label>Department name</mat-label>
+                    <input matInput formControlName="name" required/>
+                </mat-form-field><br/>
+                <button type="button" type="button"class="btn btn-danger" style="font-weight:bold;font-family: Robot;" (click)="UpdateDepartmentList()" [disabled]="fg_department.invalid">Update</button><br/>    
+            </form>
+        </div>
+    </ng-template>
+</div>

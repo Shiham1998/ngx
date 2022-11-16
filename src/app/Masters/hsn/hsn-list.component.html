@@ -1,0 +1,68 @@
+<div>
+    <nav class="navbar" style="display: flex;">
+        <i class="las la-arrow-left left" routerLink="/layout"> <a class="navbar-brand"
+            style="color:white;font-weight:bold;">HSN Code Informations</a>
+        </i>
+      </nav> 
+      <div *ngFor="let hsnlist of hsnmasterlistdata let i=index">
+        <div class="row justify-content-center" style="margin-top:10px;">
+            <div class="col-sm-6">
+              <div class="card shadow bg-white rounded">
+                <div class="card-body" style="font-weight: bold;">
+                 <h5 class="card-title">
+                    <i class="las la-trash-alt" 
+                      data-toggle="modal" id="edit1" href="#ConfirmModal"(click)="Passidfromdeletemodal(hsnlist.id)"  >
+                    </i> 
+                    <i class="las la-pen"
+                      id="edit1"  routerLink="/addhsn/{{hsnlist.id}}">
+                    </i> 
+                  </h5>
+                  <span class="card-text">Code:</span><label id="codeid">{{hsnlist.Code}}</label><br/>
+                  <span class="card-text">HSN Code:</span><label id="hsncode">{{hsnlist.HSN_Code}}</label><br/>
+                  <span class="card-text">HSN Name:</span><label id="hsnname">{{hsnlist.HSN_Name}}</label><br/>
+                  <span class="card-text">Description:</span><label id="description">{{hsnlist.Description}}</label><br/>
+                  <span class="card-text">HSN GST %:</span><label id="hsngst">{{hsnlist.HSN_GST}}</label><br/>
+                  <span class="card-text">HSN SGST %:</span><label id="hsnsgst">{{hsnlist.HSN_SGST}}</label><br/>
+                  <span class="card-text">HSN CGST %:</span><label id="hsncgst">{{hsnlist.HSN_CGST}}</label><br/>
+                  <span class="card-text">HSN IGST %:</span><label id="hsnigst">{{hsnlist.HSN_IGST}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div id="ConfirmModal" class="modal" *ngFor="let hsnlist of hsnmasterlistdata" >
+        <div class="modal-dialog modal-confirm">
+          <div class="modal-content">
+            <div class="modal-header flex-column" data-target=".bd-example-modal-sm">
+              <h4 class="modal-title"> Are you sure?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Do you really want to delete <strong style="color:#60c7c1;">{{hsnlist.Code}}</strong> record? </p>
+              <p>This process cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+              <button type="btn" class="btn btn-outline-danger" data-toggle="modal" data-target="#SuccessModalDelete" data-dismiss="modal"
+                style="background-color: #A11F21;"(click)="deletehsnmaster(gethsnmastersId)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div #SuccessModalDelete id="SuccessModalDelete" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+          <div class="modal-content">
+            <div class="modal-body">
+              <i class="fa fa-info-circle fa-5x center" aria-hidden="true"></i>
+              <p id="smsg">HSN Details Deleted successfully</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="float" routerLink="/addhsn">
+        <i class="la la-plus my-float"></i>
+      </a>
+</div>

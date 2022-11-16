@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  margin-bottom: 45px;
+}
+
+.card1 {
+  width: 350px;
+  height: 370px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px
+}
+
+.card1 ul {
+  padding-left: 10px;
+  min-width: 100%
+}
+
+.card1 ul li {
+  list-style: none;
+  padding: 10px;
+  display: table;
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px;
+  width: 270px;
+}
+
+ul i {
+  float: right;
+  color: black;
+  font-size: 30px;
+}
+
+.card1 ul li span {
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 250px;
+  display: inline-block
+}
+
+.card1 ul li::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 14px;
+  top: 0;
+  left: 0;
+}
+
+.card1 ul li::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  height: 5px;
+  width: 5px;
+  color: white;
+}
+
+.plus {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #CC252C;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  margin-right: 140px;
+  margin-top: 150px;
+}
+
+hr {
+  margin-bottom: 5px;
+}
+
+.my-float {
+  margin-top: 22px;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: #A11F21;
+  color: #f2f2f2;
+}
+
+input[type=search] {
+  background: white;
+  padding: 9px 10px 9px 32px;
+  width: 55px;
+}
+
+input[type=search]:focus {
+  width: 200px;
+  background-color: #ccc;
+}
+
+.additems {
+  background-color: #A11F21;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+}
+
+.las {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
+
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: rgb(124, 1, 1);
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  margin-right: 120px;
+  margin-top: 150px;
+}
+
+li span::first-letter{
+  text-transform: capitalize;
+}
+#itemlist_header {
+  background-color: #A11F21;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: auto;
+  font-size: 30px;
+  font-family: roboto;
+}
+
+#leftarrow {
+  margin-top: 10px
+}
+
+#heading {
+  margin-left: 12px;
+  margin-top: 10px
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+#list {
+  font-weight: bold;
+  font-family: roboto;
+  font-size: 25px;
+  float: left;
+}
+
+#edit2 {
+  color: #A11F21;
+  margin-top: 5px;
+}
+
+#items {
+  font-family: roboto;
+  font-size: 15px;
+  margin-left: 10px;
+  color: blueviolet;
+}
+.left{
+  font-size: 20px;
+  margin-right: 15px;
+}
+.search{
+ margin-right: 10px;
+ font-size: 20px;
+}
+#search{
+ border-radius: 15px;
+ border-color: #A11F21;
+}

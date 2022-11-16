@@ -1,0 +1,45 @@
+<div class="container aligns-items-center mx-auto pl-0 pt-3 m-0">
+  <div id="head">
+    <div id="login">
+      Login Here
+    </div>
+    <div class="logo-center">
+      <img width="80px" height="80px" src="assets/image/honeybill-logo.png" class="rounded" alt="Cinque Terre">
+    </div>
+
+    <form name="form" action="#" (ngSubmit)="f.form.valid && f_login()" #f="ngForm" style="justify-content: center;">
+
+      <mat-form-field appearance="legacy" >
+        <mat-label>Email or Mobile</mat-label>
+        <input matInput id="staticEmail" [(ngModel)]="form.user_mobile" name="uname" required #user_mobile="ngModel"
+          maxlength="30" style="font-weight: bold;font-size: 19px;font-family: Robot;">
+      </mat-form-field>
+      <p *ngIf="user_mobile.errors && f.submitted" class="text-danger" style="margin-left: 40px;"> Mobile number is
+        required!</p>
+       <mat-form-field>
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"  #postalCode #user_pwd="ngModel" name="psw" id="inputPassword" #pswd  [(ngModel)]="form.user_pwd" required maxlength="10" style="font-weight: bold;font-size: 19px;font-family: Robot;">
+          <mat-hint>{{postalCode.value.length}} /10</mat-hint>
+          </mat-form-field>
+          <span class="input-group-text" (click)="changeType(pswd, 1)" id="eye" style="margin-left: 40px;font-family: Robot;"><i
+            [ngClass]="toggle1 ? 'las la-eye' : 'las la-eye-slash'"></i>Show
+          Password</span>
+       <div>
+        <p></p>
+      </div>
+
+      <div class="d-grid col-12 mx-auto pt-3 m-0">
+        <input type="submit" value="Login" id="btn_login" class="btn btn-primary btn-sm"
+          style="font-weight: bold;font-size:20px;font-family: Robot;">
+      </div>
+      <div class="mb-6 row pt-3 pb-3" id="signup" style="font-weight: bold;font-family: Robot;">
+        <div class="col-6 text-left">New member?<a routerLink="/signup">Sign up </a></div>
+        <div class="col-6" id="forget_pass"><a href="#">Forget Password?</a></div>
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

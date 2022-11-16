@@ -1,0 +1,43 @@
+<div>
+  <div *ngIf="addMode">
+    <nav class="navbar" style="display: flex;">
+      <i class="las la-arrow-left left" routerLink="/designation"> <a class="navbar-brand"
+          style="color:white;font-weight:bold;">Add Designation</a>
+      </i>
+    </nav>
+  </div>
+  <div *ngIf="!addMode">
+    <nav class="navbar" style="display:flex;">
+      <i class="las la-arrow-left left" routerLink="/designation">
+        <a class="navbar-brand" style="color:white; font-weight:bold;">Edit Designation</a>
+      </i>
+    </nav>
+  </div>
+
+  <div *ngIf="addMode; else editable">
+    <form [formGroup]="fg_designationname" class="was-validated">
+      <mat-form-field class="lengthinput">
+        <mat-label>Enter designation name</mat-label>
+        <input matInput formControlName="name" required />
+      </mat-form-field><br />
+      <button type="button"  class="btn btn-danger" style="font-weight:bold;font-family: Robot;"
+        (click)="savedesignation()" [disabled]="fg_designationname.invalid">Save</button><br />
+      <b>
+        <p style="color: green; font-size:15pt;">{{message}}</p>
+      </b>
+    </form>
+  </div>
+
+  <ng-template #editable>
+    <div>
+      <form [formGroup]="fg_designationname" class="was-validated">
+        <mat-form-field class="lengthinput">
+          <mat-label>Enter designation name</mat-label>
+          <input matInput formControlName="name" required />
+        </mat-form-field><br />
+        <button type="button" class="btn btn-danger" style="font-weight:bold;font-family: Robot;"
+          (click)="updateDesignationlist()" [disabled]="fg_designationname.invalid">Update</button><br />
+      </form>
+    </div>
+  </ng-template>
+</div>

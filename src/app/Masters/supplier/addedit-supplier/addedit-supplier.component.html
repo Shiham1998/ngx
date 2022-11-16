@@ -1,0 +1,394 @@
+<div>
+  <div *ngIf="addMode">
+    <nav class="navbar" style="display: flex;">
+      <i class="las la-arrow-left left" routerLink="/supplier"> <a class="navbar-brand"
+          style="color: white;font-weight:bold;">Add Supplier Information</a></i>
+      <form class="form-inline" style="float: right;">
+      </form>
+    </nav>
+  </div>
+  <div *ngIf="!addMode">
+    <nav class="navbar" style="display: flex;">
+      <i class="las la-arrow-left left" routerLink="/supplier"> <a class="navbar-brand"
+          style="color: white;font-weight:bold;">Edit Supplier Information</a></i>
+      <form class="form-inline" style="float: right;">
+      </form>
+    </nav>
+  </div>
+  <div class="cll" *ngIf="addMode; else editable">
+    <mat-stepper orientation="vertical" #stepper>
+    <mat-step [stepControl]="fg_supplierdetails">
+        <form [formGroup]="fg_supplierdetails">
+          <ng-template matStepLabel><b>Supplier Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Company Name</mat-label>
+            <input matInput formControlName="company_name" required />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" required />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>State</mat-label>
+            <b>
+              <mat-select formControlName="state">
+                <b>
+                  <mat-option value="option1" *ngFor="let state of stateList" value=" {{ state.name }}">
+                    {{ state.name }}
+                  </mat-option>
+                </b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>PIN Code</mat-label>
+            <input matInput #pincode maxlength="6" placeholder="Ex. 627103" formControlName="pincode"
+              (keypress)="numberOnly($event)">
+            <mat-hint>{{pincode.value.length}} / 6</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Country</mat-label>
+            <b>
+              <mat-select formControlName="country">
+                <b>
+                  <mat-option value="option1" *ngFor="let country of countryList" value=" {{ country.name }}">
+                    {{ country.name }}
+                  </mat-option>
+                </b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Phone Number</mat-label>
+            <span matPrefix>+91 &nbsp;</span>
+            <input matInput #mobilenum maxlength="10" placeholder="Ex. 9893159896" value="" formControlName="phoneno">
+            <mat-hint>{{mobilenum.value.length}} / 10</mat-hint>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="fg_supplierdetails">
+        <form [formGroup]="fg_supplierdetails">
+          <ng-template matStepLabel><b>Bank Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Bank Name</mat-label>
+            <input matInput formControlName="bank_name" required />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Bank Account No</mat-label>
+            <input matInput formControlName="bank_accno" required />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>IFSC code</mat-label>
+            <input matInput formControlName="IFSC_code" />
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="fg_supplierdetails">
+        <form [formGroup]="fg_supplierdetails">
+          <ng-template matStepLabel><b>Tax Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>PAN No.</mat-label>
+            <input matInput #pannum maxlength="10" placeholder="Ex. ABCTY1234D." value="" formControlName="panno"
+              (keypress)="numberOnly($event)">
+            <mat-hint>{{pannum.value.length}} / 10</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>GSTIN</mat-label>
+            <input matInput #gst maxlength="15" placeholder="Ex. 33AABCU9603R1ZM" value="" formControlName="GSTIN">
+            <mat-hint>{{gst.value.length}} / 15</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>State</mat-label>
+            <b>
+              <mat-select formControlName="tax_state">
+                <b>
+                  <mat-option value="option1" *ngFor="let state of stateList" value="   {{ state.name }}">
+                    {{ state.name }}
+                  </mat-option>
+                </b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="fg_supplierdetails">
+        <form [formGroup]="fg_supplierdetails">
+          <ng-template matStepLabel><b>Account Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Openning Balance</mat-label>
+            <span matPrefix><b>Rs.</b></span>
+            <input matInput formControlName="openingbal" (keypress)="numberOnly($event)" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Type</mat-label>
+            <b>
+              <mat-select formControlName="Type">
+                <b>
+                  <mat-option value="Debit">Debit</mat-option>
+                  <mat-option value="Credit">Credit</mat-option>
+                </b>
+              </mat-select>
+            </b>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="fg_supplierdetails">
+        <form [formGroup]="fg_supplierdetails">
+          <ng-template matStepLabel><b>Contact Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Contact Person</mat-label>
+            <input matInput formControlName="contactperson" />
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Contact No.</mat-label>
+            <input matInput formControlName="contactno" />
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="fg_supplierdetails">
+        <form [formGroup]="fg_supplierdetails">
+          <ng-template matStepLabel><b>Other Details</b></ng-template>
+          <mat-form-field appearance="legacy">
+            <mat-label>Remork / Note</mat-label>
+            <input matInput formControlName="remarknote" />
+          </mat-form-field>
+        </form>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel><b>Done</b></ng-template>
+        <p class="cll">You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button [disabled]="fg_supplierdetails.invalid" (click)="Savesupplier()">Save</button>
+          <p style="color: green;"></p>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+  <!---------------------------------------------------------- editable--------------------------------------------->
+
+  <ng-template #editable>
+    <div class="cll">
+      <mat-stepper orientation="vertical" #stepper>
+        <mat-step [stepControl]="fg_supplierdetails">
+          <form [formGroup]="fg_supplierdetails">
+            <ng-template matStepLabel><b>Supplier Details</b></ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>Comapny Name</mat-label>
+              <input matInput formControlName="company_name" required />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address" required />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>State</mat-label>
+              <b>
+                <mat-select formControlName="state">
+                  <b>
+                    <mat-option value="option1" *ngFor="let state of stateList" value=" {{ state.name }}">
+                      {{ state.name }}
+                    </mat-option>
+                  </b>
+                </mat-select>
+              </b>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Country</mat-label>
+              <b>
+                <mat-select formControlName="country">
+                  <b>
+                    <mat-option value="option1" *ngFor="let country of countryList" value=" {{ country.name }}">
+                      {{ country.name }}
+                    </mat-option>
+                  </b>
+                </mat-select>
+              </b>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>PIN Code</mat-label>
+              <input matInput #pincode maxlength="6" placeholder="Ex. 627103" formControlName="pincode"
+                (keypress)="numberOnly($event)">
+              <mat-hint>{{pincode.value.length}} / 6</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Country</mat-label>
+              <b>
+                <mat-select formControlName="country">
+                  <b>
+                    <mat-option value="option1" *ngFor="let country of countryList" value=" {{ country.name }}">
+                      {{ country.name }}
+                    </mat-option>
+                  </b>
+                </mat-select>
+              </b>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Phone Number</mat-label>
+              <span matPrefix>+91 &nbsp;</span>
+              <input matInput #mobilenum maxlength="10" placeholder="Ex. 9893159896" value="" formControlName="phoneno">
+              <mat-hint>{{mobilenum.value.length}} / 10</mat-hint>
+            </mat-form-field>
+          </form>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fg_supplierdetails">
+          <form [formGroup]="fg_supplierdetails">
+            <ng-template matStepLabel><b>Bank Details</b></ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>Bank Name</mat-label>
+              <input matInput formControlName="bank_name" required />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Bank Account No</mat-label>
+              <input matInput formControlName="bank_accno" required />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>IFSC code</mat-label>
+              <input matInput formControlName="IFSC_code" />
+            </mat-form-field>
+          </form>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fg_supplierdetails">
+          <form [formGroup]="fg_supplierdetails">
+            <ng-template matStepLabel><b>Tax Details</b></ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>PAN No.</mat-label>
+              <input matInput #pannum maxlength="10" placeholder="Ex. ABCTY1234D." value="" formControlName="panno"
+                (keypress)="numberOnly($event)">
+              <mat-hint>{{pannum.value.length}} / 10</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>GSTIN</mat-label>
+              <input matInput #gst maxlength="15" placeholder="Ex. 33AABCU9603R1ZM" value="" formControlName="GSTIN">
+              <mat-hint>{{gst.value.length}} / 15</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>State</mat-label>
+              <b>
+                <mat-select formControlName="state">
+                  <b>
+                    <mat-option value="option1" *ngFor="let state of stateList" value=" {{ state.name }}">
+                      {{ state.name }}
+                    </mat-option>
+                  </b>
+                </mat-select>
+              </b>
+            </mat-form-field>
+          </form>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fg_supplierdetails">
+          <form [formGroup]="fg_supplierdetails">
+            <ng-template matStepLabel><b>Account Details</b></ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>Openning Balance</mat-label>
+              <span matPrefix><b>Rs.</b></span>
+              <input matInput formControlName="openingbal" (keypress)="numberOnly($event)" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Type</mat-label>
+              <b>
+                <mat-select formControlName="Type">
+                  <b>
+                    <mat-option value="Debit">Debit</mat-option>
+                    <mat-option value="Credit">Credit</mat-option>
+                  </b>
+                </mat-select>
+              </b>
+            </mat-form-field>
+          </form>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fg_supplierdetails">
+          <form [formGroup]="fg_supplierdetails">
+            <ng-template matStepLabel><b>Contact Details</b></ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>Contact Person</mat-label>
+              <input matInput formControlName="contactperson" />
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Contact No.</mat-label>
+              <input matInput formControlName="contactno" />
+            </mat-form-field>
+          </form>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fg_supplierdetails">
+          <form [formGroup]="fg_supplierdetails">
+            <ng-template matStepLabel><b>Other Details</b></ng-template>
+            <mat-form-field appearance="legacy">
+              <mat-label>Remork / Note</mat-label>
+              <input matInput formControlName="remarknote" />
+            </mat-form-field>
+          </form>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel><b>Done</b></ng-template>
+          <p class="cll">You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button [disabled]="fg_supplierdetails.invalid" (click)="UpdateSupplierByid()">Edit</button>
+            <p style="color: green;"></p>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </ng-template>
+</div>

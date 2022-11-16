@@ -1,0 +1,50 @@
+<!----Outlet card Start-->
+<div class="container d-flex flex-row justify-content-center mt-100">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" routerLink="/outlet">
+                <div class="card-body text-center">
+                    <i class="las la-store-alt"></i>
+                    <h4 class="outlet">Outlet
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----Outlet card End-->
+
+    <!----Item card Start-->
+    <div class="row" style="margin-left: 1px;">
+        <div class="col-sm-12">
+            <div class="card" routerLink="/itemlist">
+                <div class="card-body text-center">
+                    <i class="las la-list-ul"></i>
+                    <h4 class="items">Item List</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----Item card End-->
+
+
+<!----Slider first card start-->
+<div class="scrolling-wrapper d-flex flex-row justify-content-center mr-5" id="sales"
+    *ngFor="let counter of counterList">
+    <div id="sale1">{{counter.sales1}}<br><span>{{counter.Product1}}</span></div>
+    <div id="sale2">{{counter.sales2}}<br><span>{{counter.Product2}}</span></div>
+    <div id="sale2">{{counter.sales3}}<br><span>{{counter.Product3}}</span></div>
+    <div id="sale2">{{counter.sales4}}<br><span>{{counter.Product5}}</span></div>
+    <div id="sale2">{{counter.sales5}}<br><span>{{counter.Product5}}</span></div>
+</div>
+<!----Slider first card End-->
+
+<!----Slider second card start-->
+<div class="scrolling-wrapper d-flex flex-row justify-content-center mt-3" *ngFor="let entry of entryList">
+    <div id="counter1"><i class="las la-file-invoice"></i> <br> <span>{{entry.entry1}}</span></div>
+    <div id="counter1"><i class="las la-file-invoice"></i><br><span>{{entry.entry2}}</span></div>
+    <div id="counter1"><i class="las la-file-invoice"></i><br><span>{{entry.entry3}}</span></div>
+    <div id="counter2"><i class="las la-file-invoice"></i><br><span>{{entry.entry4}}</span></div>
+    <div id="counter2"><i class="las la-file-invoice"></i><br><span>{{entry.entry5}}</span></div>
+</div>
+<!----Slider second card End-->

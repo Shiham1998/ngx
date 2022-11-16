@@ -1,0 +1,101 @@
+<div>
+    <div *ngIf="addMode">
+        <nav class="navbar" style="display: flex;">
+            <i class="las la-arrow-left left" routerLink="/hsn"> <a class="navbar-brand"
+                style="color:white;font-weight:bold;">Add HSN</a>
+            </i>
+        </nav>
+    </div>
+    <div *ngIf="!addMode" >
+        <nav class="navbar" style="display: flex;">
+            <i class="las la-arrow-left left" routerLink="/hsn"> <a class="navbar-brand"
+                style="color:white;font-weight:bold;">Edit HSN</a>
+            </i>
+        </nav>
+    </div>
+    <div *ngIf="addMode; else editable">
+        <form  [formGroup]="fg_hsnname" class="was-validated" >
+                <mat-form-field class="lengthinput">
+                    <mat-label>Code</mat-label>
+                    <input matInput formControlName="Code" (keypress)="number($event)" required/>
+                </mat-form-field>
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN Code</mat-label>
+                    <input matInput formControlName="HSN_Code"(keypress)="keyPressAlphanumeric($event)" required/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN Name</mat-label>
+                    <input matInput formControlName="HSN_Name"(keypress)="keyPressAlphanumeric($event)" required/>
+                </mat-form-field>
+                <mat-form-field class="lengthinput">
+                    <mat-label>Description</mat-label>
+                    <input matInput formControlName="Description"(keypress)="keyPressAlphanumeric($event)" required/>
+                </mat-form-field><br/>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN GST %</mat-label>
+                    <input type="text" matInput formControlName="HSN_GST" id="HSN_GST" (keypress)="number($event)" (input)="gstCalc($event)" maxlength="5" required/>
+                </mat-form-field>
+                
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN SGST %</mat-label>
+                    <input matInput formControlName="HSN_SGST" id="HSN_SGST" (keypress)="number($event)" readonly required/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN CGST %</mat-label>
+                    <input matInput formControlName="HSN_CGST" id="HSN_CGST" (keypress)="number($event)" readonly required/>
+                </mat-form-field>
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN IGST %</mat-label>
+                    <input matInput formControlName="HSN_IGST"  (keypress)="number($event)" required/>
+                </mat-form-field><br/>
+            <button type="button" type="button"class="btn btn-danger" style="font-weight:bold;font-family: Robot;" (click)="savehsndata()" [disabled]="fg_hsnname.invalid">Save</button><br/>
+           <b><p style="color: green; font-size:15pt;">{{message}}</p></b>
+        </form>
+       </div>
+   <ng-template  #editable>
+        <div>
+            <form  [formGroup]="fg_hsnname" class="was-validated">
+                <mat-form-field class="lengthinput">
+                    <mat-label>Code</mat-label>
+                    <input matInput formControlName="Code" (keypress)="number($event)" required/>
+                </mat-form-field>
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN Code</mat-label>
+                    <input matInput formControlName="HSN_Code"(keypress)="keyPressAlphanumeric($event)" required/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN Name</mat-label>
+                    <input matInput formControlName="HSN_Name"(keypress)="keyPressAlphanumeric($event)"required/>
+                </mat-form-field>
+               
+                <mat-form-field class="lengthinput">
+                    <mat-label>Description</mat-label>
+                    <input matInput formControlName="Description" (keypress)="keyPressAlphanumeric($event)" required/>
+                </mat-form-field><br/>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN GST %</mat-label>
+                    <input matInput formControlName="HSN_GST" (keypress)="number($event)" maxlength="5" required/>
+                </mat-form-field>
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN SGST %</mat-label>
+                    <input matInput formControlName="HSN_SGST" (keypress)="number($event)" readonly required/>
+                </mat-form-field>
+
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN CGST %</mat-label>
+                    <input matInput formControlName="HSN_CGST" (keypress)="number($event)" readonly required/>
+                </mat-form-field>
+                <mat-form-field class="lengthinput">
+                    <mat-label>HSN IGST %</mat-label>
+                    <input matInput formControlName="HSN_IGST" (keypress)="number($event)" required/>
+                </mat-form-field><br/>
+              <button type="button"class="btn btn-danger" style="font-weight:bold;font-family: Robot;"(click)="updatehsndata()" [disabled]="fg_hsnname.invalid">Update</button><br/>
+            </form>
+        </div>
+    </ng-template>
+</div>

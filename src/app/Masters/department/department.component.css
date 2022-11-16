@@ -1,0 +1,175 @@
+.float{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    background-color:rgb(124, 1, 1);
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    box-shadow: 2px 2px 3px #999;
+      margin-left: 100px;
+      margin-top: 150px;
+  }
+  .my-float{
+    margin-top:22px;
+  }
+  .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: #A11F21;
+    color: #f2f2f2;
+  }
+  .card-body{
+    font-family: Robot;
+    font-size: 16pt;
+  }
+  #edit1{
+    float:right;
+    color:#CC252C;
+    font-size: 30px;
+    font-weight:bold;
+    cursor: pointer;
+  }
+  .card-title{
+    color:rgb(58, 91, 238);
+  }
+  .card-body:hover{
+    box-shadow: 0 25px 30px rgba(163, 1, 1, 0.4)   
+  }
+ #brandname{
+  margin-left: 2rem;
+ }
+ #brandid{
+  margin-left:10.2rem;
+ }
+
+
+ .modal-confirm {
+  color: #636363;
+  width: 400px;
+}
+
+.modal-confirm .modal-content {
+  padding: 0px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+.modal-confirm .modal-header {
+  border-bottom: none;
+  position: relative;
+}
+
+.modal-confirm h4 {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -10px;
+}
+
+.modal-confirm .close {
+  position: absolute;
+  top: 15px;
+  right: 15px
+}
+
+.modal-confirm .modal-body {
+  padding: 0px;
+  color: #999;
+}
+
+.modal-confirm .modal-footer {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 10px 15px 25px;
+}
+
+.modal-confirm .modal-footer a {
+  color: #999;
+}
+
+.modal-confirm .icon-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 9;
+  text-align: center;
+  border: 3px solid #f15e5e;
+}
+
+.modal-confirm .icon-box i {
+  color: #f15e5e;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+i{
+cursor: pointer;
+}
+.modal-confirm .btn,
+.modal-confirm .btn:active {
+  color: #fff;
+  border-radius: 4px;
+  background: #60c7c1;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  min-width: 120px;
+  border: none;
+  min-height: 40px;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+.btn:hover {
+  -ms-transform: scale(1.1); 
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.1); 
+}
+.modal-confirm .btn-secondary {
+  background: #c1c1c1;
+}
+
+.modal-confirm .btn-secondary:hover,
+.modal-confirm .btn-secondary:focus {
+  background: #a8a8a8;
+}
+
+.modal-confirm .btn-danger {
+  background: #f15e5e;
+}
+
+.modal-confirm .btn-danger:hover,
+.modal-confirm .btn-danger:focus {
+  background: #ee3535;
+}
+.modal-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px 0;
+}  
+p {
+  margin-top: 20px;
+font-weight: bold;
+  font-size: 21px;
+  color: black;
+  font-weight: bold;
+  font-family: 'Robot';
+}
+h4{
+  background-color: #A11F21;
+  color: white;
+  font-weight: bold;
+  font-family: Robot;
+}

@@ -1,0 +1,108 @@
+@media (min-width: 360px) { 
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  } 
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) { 
+.logo-center{
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+} 
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+ }
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+  .container{
+    padding-top: 50px;
+    width:500px;
+  }
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+ }
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+  div {
+    font-size: 0.80rem;
+  }
+  .container{
+    padding-top: 50px;
+    width:500px;
+  }
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+ }
+
+/* XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) { 
+  .container{
+    padding-top: 50px;
+    width:500px;
+  }
+  .logo-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+  } 
+}
+.input-group-text
+{
+  background: none;
+  border: none;
+}
+
+#head{
+  border:1px solid #A11F21;margin-top: 150px;  
+}
+#login{
+  background-color:#A11F21;color: white;font-size: 1.25rem;
+}
+#eye{
+ font-size:12pt; font-family:'Lato','Open Sans','Montserrat',sans-serif;
+}
+#btn_login{
+  background-color:#A11F21; border-radius: 12px;
+}
+#forget_pass{
+ text-align: right;
+}
+
+#signup{
+  font-size: 0.75rem;
+}
+mat-form-field{
+ width:80%;
+ margin-left: 40px;
+}
+mat-label{
+ font-size: 20px;
+ font-weight: bold;
+ font-family: Robot;
+}
+#login{
+  font-family: Robot;
+}
+.lgn:hover {
+  color: rgb(233, 10, 10);
+  box-shadow: 0 15px 25px rgba(145, 92, 182, .4);
+}
